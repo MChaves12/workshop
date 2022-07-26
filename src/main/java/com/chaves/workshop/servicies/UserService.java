@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chaves.workshop.domain.User;
+import com.chaves.workshop.dto.UserDTO;
 import com.chaves.workshop.repositories.UserRepository;
 import com.chaves.workshop.servicies.exception.ObjectNotFoundException;
 
@@ -26,6 +27,14 @@ public class UserService {
 			throw new ObjectNotFoundException("Objeto não encontrado");
 		} 
 		return (User) user;
+	}
+	
+	public User insert(User obj) {
+		return repository.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 
 }
